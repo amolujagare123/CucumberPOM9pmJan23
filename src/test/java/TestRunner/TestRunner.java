@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "Features"
         ,glue = "stepdefinition"
- , tags = "@hotelsSearch"
+ , tags = "@starverify"
        // , dryRun = true
 )
 public class TestRunner {
