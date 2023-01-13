@@ -37,4 +37,22 @@ public class HotelsSearchResult extends Base {
         return  getDriver().findElements(totalStars).size();
     }
 
+
+    By priceList = By.xpath("//span[@data-testid='price-and-discounted-price']");
+
+    public ArrayList<Integer> getPriceList()
+    {
+        ArrayList<String> priceListStr = getElementTextList(priceList); // ₹ 18,500
+        ArrayList<Integer> priceListInt = new ArrayList<>();
+        for (String priceStr: priceListStr ) {
+
+            String priceWithComma = priceStr.split(" ")[1]; // 18,500
+            String priceWithoutComma= priceWithComma.replace(",",""); // 18500
+            int price = Integer.parseInt(priceWithoutComma);
+
+            priceListInt.add(price);
+        }
+
+        return priceListInt;
+    }
 }

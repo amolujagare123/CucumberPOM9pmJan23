@@ -25,6 +25,7 @@ public class Base {
                 .ignoring(ElementClickInterceptedException.class)
                 .ignoring(ElementNotInteractableException.class)
                 .ignoring(ArithmeticException.class)
+                .ignoring(NullPointerException.class)
                 .ignoring(Exception.class)
                 .withMessage(
                         "WebDriver waited for 50 seconds but still " +

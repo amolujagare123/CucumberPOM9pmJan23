@@ -16,6 +16,10 @@ public class HotelsSD {
     @Given("I am on default locations search result screen")
     public void i_am_on_default_locations_search_result_screen() {
 
+        Assert.assertEquals("This is not a search result page",
+                "Booking.com : Hotels in Goa . Book your hotel now!",
+                getDriver().getTitle());
+
     }
     @Then("I verify {string} is within the search result")
     public void i_verify_is_within_the_search_result(String expectedHotelName) {
@@ -56,4 +60,42 @@ public class HotelsSD {
     }
 
 
+    @Then("I verify system displays all hotels within {string} amount")
+    public void iVerifySystemDisplaysAllHotelsWithinAmount(String expectedAmountStr) {
+
+        int expectedAmount = Integer.parseInt(expectedAmountStr);
+
+        ArrayList<Integer> priceList = hotelsSearchResult.getPriceList();
+
+
+        boolean flag = true;
+        //int a = 1;
+        /*for (Integer price:priceList) {
+
+            System.out.println(price);
+            if (price>expectedAmount)
+            {
+                flag = false;
+                break;
+            }
+
+        }*/
+
+        for (int i=0;i< priceList.size();i++) {
+
+            System.out.println(priceList.get(i));
+            if (priceList.get(i)>expectedAmount)
+            {
+                 flag = false;
+                //a =0;
+                break;
+            }
+
+        }
+
+        /*Assert.assertEquals("Some prices are greater than "+expectedAmount,
+                1,a);*/
+        Assert.assertTrue("Some prices are greater than "+expectedAmount,flag);
+
+    }
 }
